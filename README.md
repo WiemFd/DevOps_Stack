@@ -1,2 +1,2 @@
-# Real-World-CI-CD
-Real-World CI/CD with Jenkins, Nexus, Ansible, Docker, and Terraform
+# DevOps_Stack
+CI/CD with Jenkins, Nexus, Ansible, Docker, and Terraform
