@@ -56,8 +56,7 @@ resource "aws_security_group" "Sec_Group" {
           to_port = port.value
           protocol = "tcp"
           cidr_blocks = ["0.0.0.0/0"] 
-        }
-        
+        }   
     }
 
     #outbound traffic
@@ -71,5 +70,26 @@ resource "aws_security_group" "Sec_Group" {
     tags = {
       Name = "Allow traffic"
     }
+  
+}
+
+#Create route table and association
+resource "aws_route_table" "myRouteTable" {
+  vpc_id = aws_vpc.myVPC.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.INTGW.id
+  }
+
+  tags = {
+      Name = "myRouteTable"
+    }
+  
+}
+
+resource "aws_route_table_association" "myAssociation" {
+  subnet_id = aws_subnet.MySubnet1.id
+  route_table_id = aws_route_table.myRouteTable.id
   
 }
