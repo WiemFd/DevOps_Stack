@@ -1,0 +1,2 @@
+[myNodes]
+tomcat ansible_host={{ Tomcat_IP }}

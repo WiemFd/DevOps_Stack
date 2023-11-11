@@ -1,0 +1,15 @@
+---
+- name: Generate SSH key pair and copy public key to nodes
+  hosts: localhost
+  gather_facts: false
+  vars:
+    ansible_python_interpreter: /usr/bin/python
+
+  tasks:
+    - name: Copy public key to nodes
+      authorized_key:
+        user: ansibleadmin
+        state: present
+        key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+      delegate_to: "{{ item }}"
+      with_items: "{{ groups['myNodes'] }}"

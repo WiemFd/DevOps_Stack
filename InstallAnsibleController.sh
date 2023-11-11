@@ -19,3 +19,5 @@ echo 'ec2-user     ALL=(ALL)      NOPASSWD: ALL' | tee -a /etc/sudoers
 # the below sed command will find and replace words with spaces "PasswordAuthentication no" to "PasswordAuthentication yes"
 sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
 service sshd restart
+#Generate SSH key pairs
+ssh-keygen
