@@ -124,3 +124,19 @@ resource "aws_instance" "AnsibleController" {
   }
 }
 
+
+# Create an AWS EC2 instance to host Ansible Managed Node1 : Apache TomCat Node
+resource "aws_instance" "AnsibleManagedNode1" {
+  ami           = var.ami
+  instance_type = var.instance_type
+  key_name = "EC2-keypair"
+  vpc_security_group_ids = [aws_security_group.Sec_Group.id]
+  subnet_id = aws_subnet.MySubnet1.id
+  associate_public_ip_address = true
+  user_data = file("./AnsibleMNnode.sh")
+
+  tags = {
+    Name = "Ansible_MN_ApacheTomcat"
+  }
+}
+
