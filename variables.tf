@@ -21,3 +21,9 @@ variable "instance_type" {
     type = string
     default = "t2.micro"
 }
+
+# Set instance type for Nexus
+variable "instance_type_for_Nexus" {
+    type = string 
+    default = "t2.medium"
+}

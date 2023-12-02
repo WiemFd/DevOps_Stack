@@ -155,3 +155,18 @@ resource "aws_instance" "AnsibleManagedNode2" {
   }
 }
 
+# Create an AWS EC2 instance to host Ansible Managed Node3 : Sonatype Nexus
+resource "aws_instance" "Nexus" {
+  ami           = var.ami
+  instance_type = var.instance_type_for_Nexus
+  key_name = "EC2-keypair"
+  vpc_security_group_ids = [aws_security_group.Sec_Group.id]
+  subnet_id = aws_subnet.MySubnet1.id
+  associate_public_ip_address = true
+  user_data = file("./InstallNexus.sh")
+
+  tags = {
+    Name = "Nexus_Server"
+  }
+} 
+
